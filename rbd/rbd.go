@@ -793,6 +793,7 @@ func (image *Image) GetSnapshotNames() (snaps []SnapInfo, err error) {
 	for {
 		c_snaps = make([]C.rbd_snap_info_t, c_max_snaps)
 		snaps = make([]SnapInfo, c_max_snaps)
+
 		ret := C.rbd_snap_list(image.image, &c_snaps[0], &c_max_snaps)
 		if ret != -C.ERANGE {
 			if ret >= 0 {
